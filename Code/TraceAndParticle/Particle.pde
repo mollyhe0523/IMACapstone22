@@ -3,8 +3,9 @@ class Particle {
   float size, wander, theta, drag;
   color PColor;
   PVector location, velocity;
+  int index;
 
-  Particle (float x, float y, float size) {
+  Particle (float x, float y, float size, int index) {
     this.alive = true;
     this.size = size;
     this.wander = 0.15;
@@ -13,6 +14,7 @@ class Particle {
     this.PColor = #ffffff;
     this.location = new PVector(x, y);
     this.velocity = new PVector(0.0, 0.0);
+    this.index = index;
   }
 
   void move() {
@@ -36,15 +38,15 @@ class Particle {
 // ----------------------------------------
 //Visualization with particle functions
 // ---------------------------------------- 
-void spawn(float x, float y) {
+void spawn(float x, float y, int index) {
   Particle myParticle;
   float theta, force;
   if (particles.size() >= PARTICLE_NUM) {
     particles.remove(0);
   }
-  myParticle = new Particle(x, y, random(size1, size2));
+  myParticle = new Particle(x, y, random(size1, size2), index);
   myParticle.wander = random(wander1, wander2);
-  myParticle.PColor = colors[floor(random(7))];
+  myParticle.PColor = colors[index][floor(random(4))];
   myParticle.drag = random(drag1, drag2);
   theta = random(TWO_PI);
   force = random(force1, force2);

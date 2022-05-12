@@ -15,22 +15,26 @@ void drawBody(KJoint[] joints) {
 
 //draw a single joint
 void drawJoint(KJoint[] joints, int jointType) {
-  pushMatrix();
-  translate(joints[jointType].getX(), joints[jointType].getY());
-  //translate(map(joints[jointType].getX(),0,1,0,512), map(joints[jointType].getY(),0,1,0,424));
-  ellipse(0, 0, 25, 25);
-  popMatrix();
+    if (joints[jointType].getX()>0){
+      pushMatrix();
+      translate(joints[jointType].getX(), joints[jointType].getY());
+      //translate(map(joints[jointType].getX(),0,1,0,512), map(joints[jointType].getY(),0,1,0,424));
+      ellipse(0, 0, 25, 25);
+      popMatrix();
+    }
 }
 
 //draw a ellipse depending on the hand state
 void drawHandState(KJoint joint) {
-  noStroke();
-  handState(joint.getState());
-  pushMatrix();
-  translate(joint.getX(), joint.getY());
-  //translate(map(joint.getX(),0,1,0,512), map(joint.getY(),0,1,0,424));
-  ellipse(0, 0, 30, 30);
-  popMatrix();
+  if (joint.getX()>0){
+    noStroke();
+    handState(joint.getState());
+    pushMatrix();
+    translate(joint.getX(), joint.getY());
+    //translate(map(joint.getX(),0,1,0,512), map(joint.getY(),0,1,0,424));
+    ellipse(0, 0, 30, 30);
+    popMatrix();
+  }
 }
 
 /*
